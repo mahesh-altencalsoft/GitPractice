@@ -248,6 +248,10 @@
 				"Shift": {
 					"viewType": "XML",
 					"viewName": "Shift"
+				},
+				"Roaster": {
+					"viewType": "XML",
+					"viewName": "Roaster"
 				}
 			}
 		},
