@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+				data-sap-ui-libs="sap.m,sap.ui.table, sap.ui.layout"
+				data-sap-ui-theme="sap_belize"
+				 data-sap-ui-preload="sync"
+				data-sap-ui-resourceroots='{
+					"ibm.fin.ar" : "./"
+				}'
+				data-sap-ui-xx-bindingSyntax="complex"
+			
+			
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+				data-sap-ui-frameOptions="trusted"
+				></script>
+				
+		<script>
+		
+			//the index html will only be used for testing our componentjs
+			var oCompContainer = new sap.ui.core.ComponentContainer({
+				name: "ibm.fin.ar"
+			});
+			
+			oCompContainer.placeAt("content");
+			
+		</script>
+	</head>
+	<body class="sapUiBody">
+		<div id="content"></div>
+		
+	</body>
+</html>

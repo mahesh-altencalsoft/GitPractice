@@ -1,0 +1,312 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Team"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:fc="sap.f" xmlns:l="sap.ui.layout" xmlns:T="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:card="sap.f.cards" xmlns:tnt="sap.tnt">
+	<Page id="TeamPage" backgroundDesign="Standard" navButtonPress="onNavBack" showNavButton="false" titleLevel="H6" title="">
+		<headerContent>
+			<Button icon="sap-icon://edit" tooltip="Edit the Team" class="btneditdelete" type="Emphasized" press="onEditPress"/>
+		</headerContent>
+		<tnt:ToolHeader height="0.7rem"></tnt:ToolHeader>
+		<!--<Text text="" class="sapUiExploredNoMarginInfo"/>-->
+		<IconTabBar class="sapUiResponsiveContentPadding myWidth">
+			<items>
+				<IconTabFilter id="idfilter" design="Horizontal" icon="sap-icon://business-card" text="Team Member" iconColor="Negative">
+		<VBox>
+					<Table id="idTeamMemberTab" width="70%" inset="false" class="Emplist tablecss" selectionChange="onclickTeamMem" itemPress="onclickTeamMem"
+						items="{ path: 'oModelTeamMember>/TeamMembertData', sorter: { path: 'id' } }">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title id="idTeam" text="Team Member List" level="H1"/>
+									<ToolbarSpacer/>
+									<DateRangeSelection id="idrangemember" width="250px" showFooter="true" change="oDaterangeMember" visible="true"/>
+									<!--<Button text="Add New Member" icon="sap-icon://add" tooltip="Add a Team Member" type="Emphasized" press="onAddTeamMember"/>-->
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="auto" visible="false" hAlign="Center">
+								<Text text="id"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="Employee"/>
+							</Column>
+							<Column hAlign="Center" width="auto">
+								<Text text=" From "/>
+							</Column>
+							<Column hAlign="Center" width="auto">
+								<Text text=" To "/>
+							</Column>
+							<Column hAlign="Begin" width="auto">
+								<Text text="Actions "/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem detailPress="onMemberItem">
+								<cells>
+									<Text text="{oModelTeamMember>employee/id}" visible="false"/>
+									<Text
+										text="{ parts: [ 'oModelTeamMember>employee/firstName', 'oModelTeamMember>employee/middleName', 'oModelTeamMember>employee/lastName' ], formatter: '.formatter.formatName'} "
+										wrapping="true"></Text>
+									<Text text="{path : 'oModelTeamMember>memberFrom', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"/>
+									<Text
+										text="{= (! ${ path: 'oModelTeamMember>memberTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} ) ? '31-Dec-9999' : ${ path: 'oModelTeamMember>memberTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} }"/>
+									<HBox alignItems="Inherit">
+										<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Team Member History" press="oneditrow" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+										<!--<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						<tnt:ToolHeader id="idToolbarList" visible="false" width="70%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button  text="PREV"  id="idPrev" press="onPrev"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>
+											<Button text="2" id="idb2" press="onSecond"></Button>
+											<Button text="3" id="idb3" press="onThird"></Button>
+											<Button text="4" id="idb4" press="onFourth"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext" enabled="true"  text="NEXT"  press="onNext"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>
+									</VBox>
+				</IconTabFilter>
+				<IconTabFilter design="Horizontal" icon="sap-icon://instance" text="Shifts">
+			<VBox>
+					<Table id="idShiftTab" width="auto" inset="false" class="Emplist tablecss" selectionChange="onclickshiftgrp" itemPress="onclickshift"
+						items="{ path: 'oModelShiftList>/ShiftData', sorter: { path: 'id' } }">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title  text="Shift  List" level="H2"/>
+									<ToolbarSpacer/>
+					<Button text="Add Shift" tooltip="Add Shift " type="Emphasized" press="onAddShiftDailog"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<!--<infoToolbar>-->
+						<!--	<OverflowToolbar>-->
+						<!--		<Label text="List of available Employees"  />-->
+						<!--	</OverflowToolbar>-->
+						<!--</infoToolbar>-->
+						<columns>
+							<Column width="auto" visible="false" hAlign="Center">
+								<Text text="id"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="Name"/>
+							</Column>
+							<Column hAlign="Begin" width="auto">
+								<Text text="Shift Group"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem detailPress="ondetail" type="Navigation">
+								<cells>
+									<Text text="{oModelShiftList>id}"/>
+									<Text text="{oModelShiftList>name}"/>
+									<HBox  items="{ path: 'oModelShiftList>shiftGroups', templateShareable:false}"  >
+									
+									<tnt:InfoLabel text="{oModelShiftList>name}" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="5" displayOnly= "true" />		
+								<!--<tnt:InfoLabel id="il51" text="text info label" renderMode="Loose" colorScheme="5" displayOnly= "true" />-->
+					
+									</HBox>
+
+									<!--<HBox alignItems="Inherit">-->
+									<!--	<core:Icon src="sap-icon://edit" press="oneditshiftgrprow" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>-->
+										<!--<core:Icon src="sap-icon://delete" press="ondeleteshiftgrprow" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+									<!--</HBox>-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+			<tnt:ToolHeader id="idToolbarList1" visible="false" width="auto" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button  text="PREV"  id="idPrev1" press="onPrev2"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb5" type="Emphasized" press="onFirst1"></Button>
+											<Button text="2" id="idb6" press="onSecond1"></Button>
+											<Button text="3" id="idb7" press="onThird1"></Button>
+											<Button text="4" id="idb8" press="onFourth1"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext1" enabled="true"  text="NEXT"  press="onNext1"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>			
+					</VBox>			
+				</IconTabFilter>
+				<IconTabFilter design="Horizontal" text="Shift Group" iconColor="Negative" icon="sap-icon://group">
+				<VBox>
+					<Table id="idShiftgrpTab" width="45%" inset="false" class="Emplist tablecss" selectionChange="onclickshiftgrp" itemPress="onclickshiftgrp"
+						items="{ path: 'oModelShiftgrpList>/ShiftgrpData', sorter: { path: 'id' } }">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title id="idEmp" text="Shift Group List" level="H2"/>
+									<ToolbarSpacer/>
+									<Button text="Add Shift Group" tooltip="Add a Shift Group" type="Emphasized" press="onAddShiftGrpDailog"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<!--<infoToolbar>-->
+						<!--	<OverflowToolbar>-->
+						<!--		<Label text="List of available Employees"  />-->
+						<!--	</OverflowToolbar>-->
+						<!--</infoToolbar>-->
+						<columns>
+							<Column width="auto" visible="false" hAlign="Center">
+								<Text text="id"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="Name"/>
+							</Column>
+							<Column hAlign="Begin" width="auto">
+								<Text text="Actions "/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem detailPress="ondetail">
+								<cells>
+									<Text text="{oModelShiftgrpList>id}"/>
+									<Text text="{oModelShiftgrpList>name}"/>
+									<HBox alignItems="Inherit">
+										<core:Icon src="sap-icon://edit" press="oneditshiftgrprow" useIconTooltip="false"  tooltip="Edit Shift Group" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+										<!--<core:Icon src="sap-icon://delete" press="ondeleteshiftgrprow" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+			<tnt:ToolHeader id="idToolbarList2" visible="false" width="45%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button  text="PREV"  id="idPrev2" press="onPrev2"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb9" type="Emphasized" press="onFirst2"></Button>
+											<Button text="2" id="idb10" press="onSecond2"></Button>
+											<Button text="3" id="idb11" press="onThird2"></Button>
+											<Button text="4" id="idb12" press="onFourth2"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext2" enabled="true"  text="NEXT"  press="onNext2"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>			
+					</VBox>
+				</IconTabFilter>
+				<IconTabFilter design="Horizontal" text="Skills" iconColor="Positive" icon="sap-icon://add-equipment">
+			<VBox>	
+					<Table id="idSkillTab" width="50%" inset="false" class="Emplist tablecss" selectionChange="onclickSkill" itemPress="onclickSkill"
+						items="{ path: 'oModelSkillList>/SkillData', sorter: { path: 'id' } }">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title id="" text="Skill List" level="H2"/>
+									<ToolbarSpacer/>
+									<Button text="Add Skill" tooltip="Add a Skill" type="Emphasized" press="onAddSkillDailog"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<!--<infoToolbar>-->
+						<!--	<OverflowToolbar>-->
+						<!--		<Label text="List of available Employees"  />-->
+						<!--	</OverflowToolbar>-->
+						<!--</infoToolbar>-->
+						<columns>
+							<Column width="auto" visible="false" hAlign="Center">
+								<Text text="id"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="Name"/>
+							</Column>
+							<Column hAlign="Center" width="auto">
+								<Text text="Description "/>
+							</Column>
+							<Column hAlign="Begin" width="auto">
+								<Text text="Actions"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem detailPress="ondetail">
+								<cells>
+									<Text text="{oModelSkillList>id}"/>
+									<Text text="{oModelSkillList>name}"/>
+									<Text text="{oModelSkillList>description}"/>
+									<HBox alignItems="Inherit">
+										<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Skill" press="oneditskillrow" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+										<!--<core:Icon src="sap-icon://delete" press="ondeleteskillrow" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+						<tnt:ToolHeader id="idToolbarList3" visible="true" width="50%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button  text="PREV"  id="idPrev3" press="onPrev3"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb13" type="Emphasized" press="onFirst3"></Button>
+											<Button text="2" id="idb14" press="onSecond3"></Button>
+											<Button text="3" id="idb15" press="onThird3"></Button>
+											<Button text="4" id="idb16" press="onFourth3"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext3" enabled="true"  text="NEXT"  press="onNext3"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>
+									</VBox>	
+				</IconTabFilter>
+				<IconTabFilter design="Horizontal" text="Leave" iconColor="Default" icon="sap-icon://offsite-work">
+		
+					<Table id="idLeaveTeamTab" width="50%" inset="false" class="Emplist tablecss" selectionChange="onclickSkill" itemPress="onclickSkill"
+						items="{ path: 'oModelLeaveList>/LeaveData', sorter: { path: 'id' } }">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Leave List" level="H2"/>
+									<ToolbarSpacer/>
+									<DateRangeSelection id="idrangeleave" width="250px" showFooter="true" change="oDaterangeLeave" visible="true"/>
+									<!--<Button text="Add Leave" tooltip="Add a Skill" type="Emphasized" press="onAddSkillDailog"/>-->
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<!--<infoToolbar>-->
+						<!--	<OverflowToolbar>-->
+						<!--		<Label text="List of available Employees"  />-->
+						<!--	</OverflowToolbar>-->
+						<!--</infoToolbar>-->
+						<columns>
+							<Column width="auto" visible="false" hAlign="Center">
+								<Text text="id"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="Employee"/>
+							</Column>
+							<Column width="auto" hAlign="Center">
+								<Text text="From"/>
+							</Column>
+							<Column hAlign="Center" width="auto">
+								<Text text="To "/>
+							</Column>
+							<Column hAlign="Begin" width="auto">
+								<Text text="Reason"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem detailPress="ondetail">
+								<cells>
+									<Text text="{oModelLeaveList>id}"/>
+									<Text text="{oModelLeaveList>id}"/>
+									<Text text="{oModelLeaveList>leaveFrom}"/>
+									<Text text="{oModelLeaveList>leaveTill}"/>
+									<Text text="{oModelLeaveList>reason}"/>
+									<HBox alignItems="Inherit">
+										<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Leave Details" press="oneditLeaverow" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+										<!--<core:Icon src="sap-icon://delete" press="ondeleteskillrow" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<content></content>
+	</Page>
+</mvc:View>

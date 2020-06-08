@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+	<Dialog title="NEW SHIFT" id="idShtDailog" showHeader="true" contentHeight="auto" contentWidth="35%" xmlns:l="sap.ui.layout"
+		draggable="true" icon="">
+		<VBox>
+		<f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+				<f:content>
+						<Label text="Shift Name" required="true"/>
+					<Input id="idShiftName" width="300px" required="true" value="{oModelGBShiftNew>/ShiftData/name}"  placeholder="Enter Shift Name..."></Input>
+						<Label text="Shift Description"/>
+					<Input id="idShiftDesc" width="300px" value="{oModelGBShiftNew>/ShiftData/description}"  placeholder="Enter Shift Description..."></Input>
+					<Label text=" Valid From"/>
+					<DatePicker id="idfromdate" 
+			value="{path:'oModelGBShiftNew>/ShiftData/validFrom', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"			
+					width="300px" placeholder="Enter From Date" valueFormat="yyyy-MM-dd" change="handleChange"/>
+					<Label text="Valid To"/>
+				<DatePicker id="idtodate" 
+				value="{= (! ${ path: 'oModelGBShiftNew>/ShiftData/validTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} ) ? '' : ${ path: 'oModelGBShiftNew>/ShiftData/validTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} }"		
+				width="300px" placeholder="Default 31-Dec-9999" valueFormat="yyyy-MM-dd" change="handleChange"/>
+				<Label text="Start Time"/>
+			<TimePicker
+				id="idstarttime"
+			width="300px"
+			valueFormat="hh:mm a"
+				displayFormat="hh:mm a"
+				value="{ path: 'oModelGBShiftNew>/ShiftData/starts', formatter: '.formatter.formatTime'}"
+				change="handleChange"
+				placeholder="Enter start time"/>
+			<Label text="End Time"/>
+			<TimePicker
+				id="idEndtime"
+			width="300px"
+		value="{ path: 'oModelGBShiftNew>/ShiftData/duration', formatter: '.formatter.formatTime'} "
+				valueFormat="hh:mm a"
+				displayFormat="hh:mm a"
+				change="handleChange"
+				placeholder="Enter End time"/>		
+				<!--<Label text="Total Time  HH:MM"/>-->
+			<!--<StepInput value="" placeholder="Hours" width="auto"  max="24" min="0">-->
+			<!-- <layoutData>-->
+   <!--                     <l:GridData span="L2 M3 S4" />-->
+   <!--                 </layoutData>-->
+   <!--             </StepInput>    -->
+			<!--	<StepInput value="" placeholder="Minutes" width="auto" max="60" min="0">-->
+			<!--		 <layoutData>-->
+   <!--                     <l:GridData span="L2 M3 S4" />-->
+   <!--                 </layoutData>-->
+			<!--	</StepInput>-->
+			<Label text="Valid Days"/>
+		<l:VerticalLayout>
+			<CheckBox
+			text="select / deselect all"
+		
+			select="onParentClicked"
+		/>
+		<core:HTML content="&lt;hr&gt;"/>
+		<CheckBox text="Sunday"  id ="idsun" selected="{oModelGBShiftNew>/ShiftData/onSunday}"/>
+		<CheckBox text="Monday" id ="idmon" selected="{oModelGBShiftNew>/ShiftData/onMonday}" />
+			<CheckBox text="Tuesday"  id ="idtue" selected="{oModelGBShiftNew>/ShiftData/onTuesday}"/>
+		<CheckBox text="Wednesday" id ="idwed" selected="{oModelGBShiftNew>/ShiftData/onWednesday}"/>
+			<CheckBox text="Thursday" id ="idthu" selected="{oModelGBShiftNew>/ShiftData/onThursday}"/>
+		<CheckBox text="Friday" id ="idfri" selected="{oModelGBShiftNew>/ShiftData/onFriday}" />
+		<CheckBox text="Saturday" id ="idsat" selected="{oModelGBShiftNew>/ShiftData/onSaturday}"/>
+				</l:VerticalLayout>
+		
+			<!--		<Label text="Background color"/>-->
+			<!--<Button press="openSampleWithDisplayModeSet" icon="sap-icon://color-fill"/>-->
+			<!--				<Label text="Background Text"/>-->
+			<!--		<Button press="openSampleWithDisplayModeSet" icon="sap-icon://text-color"/>-->
+				</f:content>
+		</f:SimpleForm>		
+		
+					</VBox>
+						<buttons >
+			<Button text="SAVE" press=".onShiftSubmit" type="Success" width="20%"/>
+			<Button text="CANCEL" press=".onShiftCancel" type="Reject" width="20%"/>
+			<!--<Button text="CLEAR" press=".onFormClear" type="Accept" width="20%"/>-->
+			<!--<Button  press=".handleMessagePopoverPress"  icon ="sap-icon://alert" type="Reject" width="10%"/>-->
+		</buttons>	
+		</Dialog>
+</core:FragmentDefinition>				

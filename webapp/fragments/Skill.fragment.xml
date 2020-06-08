@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" 
+	xmlns:f="sap.f"
+		xmlns:card="sap.f.cards" >
+
+	<Dialog title="Add Skill" id="idSkillDailog" showHeader="true" contentHeight="auto" contentWidth="auto" xmlns:l="sap.ui.layout"
+		draggable="true" icon="sap-icon://employee">
+		<f:Card
+			class="sapUiMediumMargin"
+			width="auto">
+			<!--<f:header>-->
+			<!--	<card:Header-->
+			<!--title=""  />-->
+			<!--</f:header>-->
+			<f:content>
+				<VBox
+					height="auto"
+					class="sapUiTinyMargin"
+					justifyContent="SpaceBetween">
+					<!--<HBox alignItems="Center" id="idhbox">-->
+							<!--<Label text="Name"  design="Bold" />-->
+		<!--<Text text="" id="idmemberName" class="formattext sapUiTinyMarginBottom" ></Text>-->
+	
+					<!--</HBox>-->
+						<HBox  alignItems="Center">
+				 <Label  text="Skill" id="idlablskill" required="true" width="150px" design="Bold" ></Label>
+		
+			<!--<ComboBox id="idskill" width="300px" change="onskillchange"  selectionChange="onselectionskillchange"-->
+			<!--	items="{-->
+			<!--		path: 'oModelComSkill>/ComSkillData',-->
+			<!--		sorter: { path: 'name' }-->
+			<!--	}">-->
+			<!--	<core:Item key="{oModelComSkill>id}" text="{oModelComSkill>name}" />-->
+			<!--</ComboBox>-->
+				<Input 	showValueHelp="true" width="250px" id="idskill"
+			valueHelpOnly="true"		valueHelpRequest=".handleValueSkill" ></Input>	
+						</HBox>	
+				<HBox  alignItems="Center">
+					    <Label  text="Desc" visible="false" width="150px" required="true" design="Bold" ></Label>
+	         <Input value="{description}" visible="false" ></Input>
+	
+					</HBox>			
+					<HBox  alignItems="Center">
+			        <Label  text="Proficiency" width="150px" required="true" design="Bold" ></Label>
+				<RatingIndicator id="idprof"   maxValue="10" class="sapUiSmallMarginBottom" iconSize="14px" editable="true"  />
+					</HBox>
+				
+		<!--<Label  text="" id="idError1" visible="false" class=" errortext sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>	-->
+				</VBox>
+			</f:content>
+		</f:Card>
+		<buttons >
+				<Button id="idAdd" text="ADD" press=".onAddSkill" type="Emphasized" width="30%" />
+			<Button id="idupdate" text="UPDATE" press=".onSkillUpdate" type="Success" width="30%"/>
+			<Button text="CANCEL" press=".onSkillCancel" type="Reject" width="30%"/>
+		
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

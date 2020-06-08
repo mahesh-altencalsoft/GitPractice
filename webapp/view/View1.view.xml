@@ -1,0 +1,141 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.View1"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt" xmlns:u="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:t="sap.ui.table">
+	<Page title="Workforce Scheduler ">
+		<headerContent>
+			<Button icon="sap-icon://bell" press="onNext" ></Button>
+			<Button icon="sap-icon://account" text="Admin" press="onNext"></Button>
+			<Button icon="sap-icon://home" press="onNext"></Button>
+		</headerContent>
+		<tnt:ToolHeader height="1rem">
+
+		</tnt:ToolHeader>
+		<u:ObjectPageLayout backgroundDesignAnchorBar="Translucent" id="ObjectPageLayout" upperCaseAnchorBar="false" enableLazyLoading="true"
+			useIconTabBar="true">
+			<u:headerTitle width="50%">
+				<u:ObjectPageHeader id="idojectheader">
+					<u:actions>
+						<!--<OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>-->
+						<!--<OverflowToolbarButton icon="sap-icon://show" text="show state" tooltip="show"/>-->
+						<Button icon="sap-icon://user-edit" tooltip="Edit the company" class="btneditdelete" type="Emphasized" press="onEditPress"/>
+				
+						<!--<Button icon="sap-icon://delete" class="btneditdelete" type="Reject" press="onDeletePress"/>-->
+					</u:actions>
+				</u:ObjectPageHeader>
+			</u:headerTitle>
+			<u:sections >
+				<u:ObjectPageSection id="idBranch" title="Branch">
+					<u:subSections>
+						<u:ObjectPageSubSection id="idBranchsection" titleUppercase="false" title="">
+							<u:actions></u:actions>
+							<u:blocks>
+								<VBox alignItems="Inherit">
+									<List id="idlist" class="branchlist" width="50%" visible="true" headerText="Branch" items="{ path: 'oModelBranchList>/BranchData' }">
+										<headerToolbar >
+											<OverflowToolbar >
+												<Label text="Branch Name" textAlign="Center" design="Bold"/>
+												<ToolbarSpacer/>
+												<Button text="NEW BRANCH" tooltip="Create a Branch" type="Emphasized" press="onnewBranch"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<items>
+											<StandardListItem title="{oModelBranchList>name}" type="Navigation" press="onBranchItem">
+												<customData>
+													<core:CustomData key="{oModelBranchList>id}" value="{oModelBranchList>name}"/>
+												</customData>
+											</StandardListItem>
+										</items>
+									</List>
+									<!--<footer>-->
+									<tnt:ToolHeader id="idToolbarList" width="50%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button  text="PREV"  id="idPrev" press="onPrev"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>
+											<Button text="2" id="idb2" press="onSecond"></Button>
+											<Button text="3" id="idb3" press="onThird"></Button>
+											<Button text="4" id="idb4" press="onFourth"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext" enabled="true"  text="NEXT"  press="onNext"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>
+									<!--</footer>-->
+								</VBox>
+							</u:blocks>
+						</u:ObjectPageSubSection>
+						<u:ObjectPageSubSection id="goalsSS11" title="123">
+							<u:blocks>
+						
+							</u:blocks>
+						</u:ObjectPageSubSection>
+					</u:subSections>
+				</u:ObjectPageSection>
+				<u:ObjectPageSection id="idBranch1" titleUppercase="false" title="">
+					<u:subSections>
+						<u:ObjectPageSubSection id="idEmpsection">
+							<u:blocks>
+									<VBox alignItems="Inherit">
+								<Table id="idEmpTab" inset="false" class="Emplist" selectionChange="onclickemployee" itemPress="onclickemployee"  items="{ path: 'oModelEmpList>/EmpData', sorter: { path: 'id' } }">
+									<headerToolbar>
+										<OverflowToolbar>
+											<content>
+												<Title id="idEmp" text="Employees" level="H2"/>
+												<ToolbarSpacer/>
+												<ToggleButton id="toggleInfoToolbar13"  text="Add New Employee" press="onNewEmployee"/>
+											</content>
+										</OverflowToolbar>
+									</headerToolbar>
+									<!--<infoToolbar>-->
+									<!--	<OverflowToolbar>-->
+									<!--		<Label text="List of available Employees"  />-->
+									<!--	</OverflowToolbar>-->
+									<!--</infoToolbar>-->
+									<columns>
+										<Column width="auto" hAlign="Center">
+											<Text text="Name"/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text="E-mail "/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem  detailPress="ondetail" type="Navigation" >
+											<cells>
+												<Text
+													text="{ 	parts: [
+								'oModelEmpList>firstName',
+								'oModelEmpList>middleName',
+								'oModelEmpList>lastName'
+							], formatter: '.formatter.formatName'} "/>
+												<Text text="{oModelEmpList>email}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							
+									
+						
+									<tnt:ToolHeader   id="idToolbarList1" width="auto" design="Transparent" height="2rem">
+										<tnt:content>
+							
+							
+											<Button text="PREV" id="idPrev1" press="onPrev1"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb5" type="Emphasized" press="onFirst1"></Button>
+											<Button text="2" id="idb6" press="onSecond1"></Button>
+											<Button text="3" id="idb7" press="onThird1"></Button>
+											<Button text="4" id="idb8" press="onFourth1"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext1" enabled="true" text="NEXT" press="onNext1"></Button>
+							
+										</tnt:content>
+									</tnt:ToolHeader>
+									</VBox>
+							</u:blocks>
+						</u:ObjectPageSubSection>
+					</u:subSections>
+				</u:ObjectPageSection>
+			</u:sections>
+		</u:ObjectPageLayout>
+		<content></content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog id="idempdailog"
+		title="Employee List"
+		class="sapUiPopupWithPadding"
+ items="{ path: 'oModelEmpList>/EmpData' }"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose"
+		liveChange="onSearch" >
+	<StandardListItem
+		id="idemplist"
+		
+			title= "{ 	parts: [
+								'oModelEmpList>firstName',
+								'oModelEmpList>middleName',
+								'oModelEmpList>lastName'
+							], formatter: '.formatter.formatName'}"
+		 >
+					<customData>
+							<core:CustomData key="{oModelEmpList>id}" value="{oModelEmpList>firstName}"/>
+						</customData>
+						</StandardListItem>
+		<!--<StandardListItem-->
+		<!--id="idTeamlist"-->
+		
+		<!--	title= "{oModelTeamList>name}"-->
+		<!-- >-->
+		<!--			<customData>-->
+		<!--					<core:CustomData key="{oModelTeamList>id}" value="{oModelTeamList>name}"/>-->
+		<!--				</customData>-->
+		<!--				</StandardListItem>					-->
+						
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,139 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Branch"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt">
+		<Page  title="Workforce Scheduler " navButtonPress="onNavBack" showNavButton="false"  xmlns:u="sap.uxap" xmlns:layout="sap.ui.layout">
+		<headerContent>
+			<Button icon="sap-icon://bell" press="onNext"></Button>
+			<Button icon="sap-icon://account" text="Admin" press="onNext"></Button>
+			<Button icon="sap-icon://home" press="onNext"></Button>
+		</headerContent>
+		
+
+		<tnt:ToolHeader height="1rem">		</tnt:ToolHeader>
+		<u:ObjectPageLayout backgroundDesignAnchorBar="Translucent" id="ObjectPageLayout" upperCaseAnchorBar="false" enableLazyLoading="true" 
+			useIconTabBar="true">
+			<u:headerTitle width="50%">
+				<u:ObjectPageHeader id="idojectheader"  objectTitle="">
+					<u:actions>
+						<!--<OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>-->
+						<!--<OverflowToolbarButton icon="sap-icon://show" text="show state" tooltip="show"/>-->
+						<Button icon="sap-icon://user-edit" tooltip="Edit a Branch" class="btneditdelete" type="Emphasized"  press="onEditPress"/>
+						<!--<Button icon="sap-icon://delete" class="btneditdelete" type="Reject" press="onDeletePress"/>-->
+					</u:actions>
+				</u:ObjectPageHeader>
+					</u:headerTitle>
+					<u:sections >
+				<u:ObjectPageSection id="idBranch" title="Branch">
+					<u:subSections>
+						<u:ObjectPageSubSection id="idBranchsection" titleUppercase="false" title="">
+							<u:actions></u:actions>
+							<u:blocks>
+								<VBox alignItems="Inherit">
+										<List id="idlist" class="branchlist" width="50%" visible="true" headerText="Team" items="{ path: 'oModelTeamList>/TeamData' }">
+										<headerToolbar >
+											<OverflowToolbar >
+												<Label text="Team Name" textAlign="Center" design="Bold"/>
+												<ToolbarSpacer/>
+												<Button text="NEW" icon="sap-icon://citizen-connect" tooltip="Create a Team" type="Emphasized" press="onNewTeam"/>
+											</OverflowToolbar>
+										</headerToolbar>
+										<items>
+											<StandardListItem title="{oModelTeamList>name}" type="Navigation" press="onTeamItem">
+												<customData>
+													<core:CustomData key="{oModelTeamList>id}" value="{oModelTeamList>name}"/>
+												</customData>
+											</StandardListItem>
+										</items>
+									</List>
+								<!--	<footer>-->
+									<tnt:ToolHeader id="idToolbarList" visible="false" width="50%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button icon="sap-icon://navigation-left-arrow" id="idPrev" press="onPrev"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>
+											<Button text="2" id="idb2" press="onSecond"></Button>
+											<Button text="3" id="idb3" press="onThird"></Button>
+											<Button text="4" id="idb4" press="onFourth"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext" enabled="true" icon="sap-icon://navigation-right-arrow" press="onNext"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>
+								<!--	</footer>-->
+								</VBox>
+							</u:blocks>
+						</u:ObjectPageSubSection>
+						<u:ObjectPageSubSection id="goalsSS11" title="123">
+							<u:blocks>
+						
+							</u:blocks>
+						</u:ObjectPageSubSection>
+					</u:subSections>
+				</u:ObjectPageSection>
+				<u:ObjectPageSection id="idBranch1" titleUppercase="false" title="Holiday List">
+					<u:subSections>
+						<u:ObjectPageSubSection id="idHolidysection">
+							<u:blocks>
+									<VBox alignItems="Inherit">
+								<Table id="idHolidayListTab" width="50%" inset="false" class="Emplist" selectionChange="onclickHoliday" itemPress="onHolidaylistItem"  items="{ path: 'oModelHolidayList>/HolidayListData', sorter: { path: 'id' } }">
+									<headerToolbar>
+										<OverflowToolbar>
+											<content>
+												<Title id="idEmp" text="Holiday List" level="H2"/>
+												<ToolbarSpacer/>
+									<Button text="NEW" icon="sap-icon://group-2" tooltip="Create a Holiday List" type="Emphasized" press="onNewHolidayList"/>
+											</content>
+										</OverflowToolbar>
+									</headerToolbar>
+									<!--<infoToolbar>-->
+									<!--	<OverflowToolbar>-->
+									<!--		<Label text="List of available Employees"  />-->
+									<!--	</OverflowToolbar>-->
+									<!--</infoToolbar>-->
+									<columns>
+											<Column width="auto" hAlign="Center" visible="false">
+											<Text text="id"/>
+										</Column>
+										<Column width="auto" hAlign="Center">
+											<Text text="Name"/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text="Year "/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem  detailPress="ondetail" type="Navigation" >
+											<cells>
+													<Text
+													text="{oModelHolidayList>holidayList/id}"/>
+												<Text
+													text="{oModelHolidayList>holidayList/name}"/>
+												<Text text="{oModelHolidayList>holidayList/year}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+									<tnt:ToolHeader id="idToolbarList1" width="50%" design="Transparent" height="2rem">
+										<tnt:content>
+											<Button icon="sap-icon://navigation-left-arrow" id="idPrev1" press="onPrev1"></Button>
+											<ToolbarSpacer/>
+											<Button text="1" id="idb5" type="Emphasized" press="onFirst1"></Button>
+											<Button text="2" id="idb6" press="onSecond1"></Button>
+											<Button text="3" id="idb7" press="onThird1"></Button>
+											<Button text="4" id="idb8" press="onFourth1"></Button>
+											<ToolbarSpacer/>
+											<Button id="idNext1" enabled="true" icon="sap-icon://navigation-right-arrow" press="onNext1"></Button>
+										</tnt:content>
+									</tnt:ToolHeader>
+									</VBox>
+							</u:blocks>
+						</u:ObjectPageSubSection>
+					</u:subSections>
+				</u:ObjectPageSection>
+			</u:sections>	
+					</u:ObjectPageLayout>
+				<content>
+			
+				</content>
+			</Page>
+	
+
+</mvc:View>
