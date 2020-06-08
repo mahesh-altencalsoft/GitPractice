@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+	<Dialog title="Employee Form" id="idEmpDailog" showHeader="true" contentHeight="70%" contentWidth="60%" xmlns:l="sap.ui.layout"
+		draggable="true" icon="sap-icon://add-employee">
+		<VBox>
+			<Label  text="" id="idError" visible="false" class=" errortext sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+			<f:SimpleForm id="idEmployeeform" editable="true" layout="ResponsiveGridLayout" class="noTitle" labelSpanXL="4" labelSpanL="4"
+				labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+				columnsL="2" columnsM="2" singleContainerFullSize="true">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="First Name" required="true"/>
+					<Input id="idfirstName" required="true"  placeholder="Enter Your First Name..."></Input>
+					<!--<Input  required="true" placeholder="Enter Your First Name..." ></Input>-->
+					<Label text="Middle Name"/>
+					<Input id="idMiddleName" placeholder="Enter Your Middle Name..."></Input>
+					<Label text="Gender" required="true"/>
+					<Select id="idgender" enabled="true" forceSelection="true">
+						<core:Item key="M" text="MALE"/>
+						<core:Item key="F" text="FEMALE"/>
+						<core:Item key="O" text="OTHER"/>
+					</Select>
+					<Label text="Join Date" required="true"/>
+					<DatePicker id="DP1" placeholder="Enter Join Date" valueFormat="yyyy-MM-dd" change="handleChange"/>
+					<core:Title text=""/>
+					<Label text="Last Name"/>
+					<Input placeholder="Enter Your Last Name..." id="idlastName"></Input>
+					<Label text="Date of Birth"/>
+					<DatePicker id="idBirthdate" placeholder="Enter Date of Birth" valueFormat="yyyy-MM-dd" change="handleChange"/>
+					<Label text="Email" required="true"/>
+					<Input required="true" id="idemail" placeholder=" Enter Your Email" type="Email"></Input>
+					<Label text="Exit Date"/>
+					<DatePicker id="DP2" placeholder="31-Dec-9999" valueFormat="yyyy-MM-dd" change="handleChange" class="sapUiSmallMarginBottom"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<buttons >
+			<Button text="SAVE" press=".onFormSubmit" type="Success" width="20%"/>
+			<Button text="CANCEL" press=".onFormCancel" type="Reject" width="20%"/>
+			<!--<Button text="CLEAR" press=".onFormClear" type="Accept" width="20%"/>-->
+			<!--<Button  press=".handleMessagePopoverPress"  icon ="sap-icon://alert" type="Reject" width="10%"/>-->
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,327 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Employee"
+	xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:card="sap.f.cards"
+	xmlns:fc="sap.f">
+	<Page title="Employee Detail" showNavButton="true" navButtonPress="onNavBack">
+		<content>
+			<l:VerticalLayout>
+				<VBox alignItems="Baseline">
+					<Panel width="auto" expandable="false" expanded="true" expand="onexpandemployee" expandAnimation="true" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="Employee Basic Informatioin"/>
+								<ToolbarSpacer/>
+								<Button id="ideditemp" icon="sap-icon://user-edit" tooltip="Edit the Employee" class="btneditdelete" type="Emphasized" press="onEditEmp"/>
+								<!--<Button icon="sap-icon://delete" tooltip="Delete the Employee" class="btneditdelete" type="Reject" press="onDeleteEmpConfirm"/>-->
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<l:HorizontalLayout>
+								<VBox alignItems="Start">
+									<Avatar class=" sapUiResponsiveMargin" displaySize="M" backgroundColor="Accent3" press="onPress" badgeIcon="sap-icon://edit"/>
+									<Text textAlign="Center" text="" class="sapUiResponsiveMargin"/>
+								</VBox>
+								<!--<VBox alignItems="Center" >-->
+								<fc:Card class="" width="auto">
+									<!--<f:header>-->
+									<!--	<card:Header-->
+									<!--		title="Buy bus ticket on-line"-->
+									<!--		subtitle="Buy a single drive ticket for a date"-->
+									<!--		iconSrc="sap-icon://bus-public-transport"/>-->
+									<!--</f:header>-->
+									<fc:content>
+										<VBox height="auto" class="sapUiSmallMargin" justifyContent="SpaceBetween">
+											<f:SimpleForm id="SimpleFormDisplay480_Trial" width="auto" editable="true" layout="ResponsiveGridLayout" class="noTitle" labelSpanXL="4"
+												labelSpanL="2" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+												columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="true">
+												<f:content>
+													<core:Title text=""/>
+													<Label text=" Name" design="Bold"/>
+													<Text
+														text="{ parts: [ 'oModelEmpForm>firstName', 'oModelEmpForm>middleName', 'oModelEmpForm>lastName' ], formatter: '.formatter.formatName'} "
+														width="300px" wrapping="true" class="formattext" maxLines="4"></Text>
+													<!--<Input   placeholder="Enter Your First Name..." ></Input>-->
+													<Label text="E-mail" design="Bold"/>
+													<Text text="{oModelEmpForm>email}" class="formattext"></Text>
+													<Label text="Gender" design="Bold"/>
+													<Text text="{oModelEmpForm>gender}" class="formattext"></Text>
+												</f:content>
+											</f:SimpleForm>
+										</VBox>
+									</fc:content>
+								</fc:Card>
+								<fc:Card class="sapUiTinyMarginBegin" width="auto">
+									<!--<f:header>-->
+									<!--	<card:Header-->
+									<!--		title="Buy bus ticket on-line"-->
+									<!--		subtitle="Buy a single drive ticket for a date"-->
+									<!--		iconSrc="sap-icon://bus-public-transport"/>-->
+									<!--</f:header>-->
+									<fc:content>
+										<VBox height="auto" class="sapUiSmallMargin" justifyContent="SpaceBetween">
+											<f:SimpleForm id="SimpleFormDisplay480_Trial1" width="auto" editable="true" layout="ResponsiveGridLayout" class="noTitle" labelSpanXL="4"
+												labelSpanL="2" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+												columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="true">
+												<f:content>
+													<core:Title text=""/>
+													<Label text="Date of Birth" design="Bold"/>
+													<Text 
+								text="{ path: 'oModelEmpForm>dob', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"
+													class="formattext"></Text>
+													<Label text="Join Date" design="Bold"/>
+													<Text 
+															text="{ path: 'oModelEmpForm>joinDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"
+													class="formattext"></Text>
+													<Label text="Exit Date" design="Bold"/>
+													<Text
+									
+									text= "{= ( ${ path: 'oModelEmpForm>exitDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} ) === '' ? '31-Dec-9999' : ${ path: 'oModelEmpForm>exitDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} }"
+												 class="formattext"></Text>
+												</f:content>
+											</f:SimpleForm>
+										</VBox>
+									</fc:content>
+								</fc:Card>
+								<!--</VBox>-->
+							</l:HorizontalLayout>
+						</content>
+					</Panel>
+					<!--<l:HorizontalLayout>-->
+					<Panel width="auto" expandable="false" expanded="false" expand="onexpandLeave" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Leave Details" width="240px"/>
+									<DateRangeSelection id="idrange1" width="300px" showFooter="true" change="oDaterangeLeave" visible="true"/>
+									<ToolbarSpacer/>
+									<Button visible="true" tooltip="Add Leave " id="idaddleave" icon="sap-icon://add" class="btneditdelete" type="Emphasized"
+										press="onLeaveDialog"/>
+									<Button visible="false" tooltip="Edit Leave " id="ideditleave" icon="sap-icon://user-edit" class="btneditdelete" type="Emphasized"
+									press="onEditLeaveDialog"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<VBox>
+								<Table id="idLeaveTab" width="auto" inset="false" class="Emplist tablecss" selectionChange="onclickTeamMem" itemPress="onclickTeamMem"
+									items="{ path: 'oModelLeave>/LeaveData', sorter: { path: 'id' } }">
+									<headerToolbar>
+									<OverflowToolbar>
+										<content>
+											<Title id="idTeamEmployee" text="Team Member List" level="H1"/>
+											<ToolbarSpacer/>
+											<Button text="Add New Member" icon="sap-icon://add" tooltip="Add a Team Member" type="Emphasized" press="onAddTeamMember"/>
+										</content>
+									</OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column width="auto" visible="false" hAlign="Center">
+											<Text text="id"/>
+										</Column>
+										<Column width="auto" hAlign="Center">
+											<Text text=" From"/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text="To "/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text="Reason "/>
+										</Column>
+										<Column hAlign="Begin" width="auto">
+											<Text text="Actions "/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem detailPress="onMemberItem">
+											<cells>
+												<Text text="{oModelLeave>id}" visible="false"/>
+												<Text
+													text="{ path: 'oModelLeave>leaveFrom', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"></Text>
+												<Text text="{ path: 'oModelLeave>leaveTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}" ></Text>
+												
+											
+												<Text text="{oModelLeave>reason} "/>
+												<HBox alignItems="Inherit">
+													<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Leave Details" press="onEditLeaveDialog" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+													<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<tnt:ToolHeader id="idToolbarList" width="50%" design="Transparent" height="2rem">
+									<tnt:content>
+										<Button text="PREV" id="idPrev" press="onPrev"></Button>
+										<ToolbarSpacer/>
+										<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>
+										<Button text="2" id="idb2" press="onSecond"></Button>
+										<Button text="3" id="idb3" press="onThird"></Button>
+										<Button text="4" id="idb4" press="onFourth"></Button>
+										<ToolbarSpacer/>
+										<Button id="idNext" enabled="true" text="NEXT" press="onNext"></Button>
+									</tnt:content>
+								</tnt:ToolHeader>
+							</VBox>
+						</content>
+					</Panel>
+					<Panel width="auto" expandable="false" expanded="false" expand="onexpandTeamHistory" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<content>
+									<Title text="Team History" width="240px"/>
+									<DateRangeSelection id="idrange2" width="310px" showFooter="true" change="oDaterangeHistory" visible="true"/>
+									<ToolbarSpacer/>
+									<Button id="idedithistory" visible="false" tooltip="Edit Team History'" icon="sap-icon://user-edit" class="btneditdelete" type="Emphasized"
+									press="onEditHistoryDailog"/>
+									<Button visible="true" tooltip="Add History " id="idaddHistory" icon="sap-icon://add" class="btneditdelete" type="Emphasized"
+										press="onHistoryDialog"/>
+								</content>
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<VBox>
+								<Table id="idTeamMemberTab" width="auto" inset="false" class="Emplist tablecss" selectionChange="onclickTeamMem" itemPress="onclickTeamMem"
+									items="{ path: 'oModelTeam>/TeamData', sorter: { path: 'id' } }">
+									<headerToolbar>
+										<OverflowToolbar>
+											<content>
+												<Title id="idTeam" text="Team Member List" level="H1"/>
+												<ToolbarSpacer/>
+												<Button text="Add New Member" icon="sap-icon://add" tooltip="Add a Team Member" type="Emphasized" press="onAddTeamMember"/>
+											</content>
+										</OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column width="auto" visible="false" hAlign="Center">
+											<Text text="id"/>
+										</Column>
+										<Column width="auto" hAlign="Center">
+											<Text text="Team"/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text=" From "/>
+										</Column>
+										<Column hAlign="Center" width="auto">
+											<Text text=" To "/>
+										</Column>
+										<Column hAlign="Begin" width="auto">
+											<Text text="Actions "/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem detailPress="onMemberItem">
+											<cells>
+												<Text text="{oModelTeam>team/id}" visible="false"/>
+												<Text text="{oModelTeam>team/name} "/>
+												<DatePicker id="idmemberfrom" valueFormat='yyyy-MM-dd' width="250px" value="{oModelTeam>memberFrom}" editable="false"  placeholder="Enter From Date"/>								
+												<Text text="{oModelTeam>memberFrom} "></Text>
+												<Text
+													text="{ path: 'oModelTeam>memberFrom', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"/>
+												<Text text="{= (! ${ path: 'oModelTeam>memberTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} ) ? '31-Dec-9999' : ${ path: 'oModelTeam>memberTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} }"/>
+												<HBox alignItems="Inherit">
+													<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Team History" alt="" press="onEditHistoryDailog" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+													<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<tnt:ToolHeader id="idToolbarList1" width="auto" design="Transparent" height="2rem">
+									<tnt:content>
+										<Button text="PREV" id="idPrev1" press="onPrev1"></Button>
+										<ToolbarSpacer/>
+										<Button text="1" id="idb5" type="Emphasized" press="onFirst1"></Button>
+										<Button text="2" id="idb6" press="onSecond1"></Button>
+										<Button text="3" id="idb7" press="onThird1"></Button>
+										<Button text="4" id="idb8" press="onFourth1"></Button>
+										<ToolbarSpacer/>
+										<Button id="idNext1" enabled="true" text="NEXT" press="onNext1"></Button>
+									</tnt:content>
+								</tnt:ToolHeader>
+							</VBox>
+						</content>
+					</Panel>
+					<!--</l:HorizontalLayout>-->
+					<!--<Panel width="auto" expandable="false" expanded="false" expand="onexpandSkill" class="sapUiResponsiveMargin">-->
+					<!--	<headerToolbar>-->
+					<!--		<OverflowToolbar>-->
+					<!--			<content>-->
+					<!--				<Title text="Skills" width="240px"/>-->
+					<!--				<ToolbarSpacer/>-->
+									<!--<Button id="idedithistory" visible="false" tooltip="Edit Team History'" icon="sap-icon://user-edit" class="btneditdelete" type="Emphasized"-->
+									<!--press="onEditHistoryDailog"/>-->
+					<!--				<Button visible="true" tooltip="Add Skill " id="idaddskill" icon="sap-icon://add" class="btneditdelete" type="Emphasized"-->
+					<!--					press="onAddSkillDialog"/>-->
+					<!--			</content>-->
+					<!--		</OverflowToolbar>-->
+					<!--	</headerToolbar>-->
+					<!--	<content>-->
+					<!--		<VBox>-->
+					<!--			<Table id="idSkillTab" width="auto" inset="false" class="Emplist tablecss" selectionChange="onclickTeamMem" itemPress="onclickTeamMem"-->
+					<!--				items="{ path: 'oModelSkill>/SkillData', sorter: { path: 'id' } }">-->
+									<!--<headerToolbar>-->
+									<!--	<OverflowToolbar>-->
+									<!--		<content>-->
+									<!--			<Title id="idTeam" text="Team Member List" level="H1"/>-->
+									<!--			<ToolbarSpacer/>-->
+									<!--			<Button text="Add New Member" icon="sap-icon://add" tooltip="Add a Team Member" type="Emphasized" press="onAddTeamMember"/>-->
+									<!--		</content>-->
+									<!--	</OverflowToolbar>-->
+									<!--</headerToolbar>-->
+					<!--				<columns>-->
+					<!--					<Column width="auto" visible="false" hAlign="Center">-->
+					<!--						<Text text="id"/>-->
+					<!--					</Column>-->
+					<!--					<Column width="auto" hAlign="Center">-->
+					<!--						<Text text="Name"/>-->
+					<!--					</Column>-->
+					<!--					<Column width="auto" hAlign="Center">-->
+					<!--						<Text text="Description"/>-->
+					<!--					</Column>-->
+					<!--					<Column hAlign="Center" width="auto">-->
+					<!--						<Text text="Proficiency"/>-->
+					<!--					</Column>-->
+										<!--<Column hAlign="Center" width="auto">-->
+										<!--	<Text text="Member Till "/>-->
+										<!--</Column>-->
+					<!--					<Column hAlign="Begin" width="auto">-->
+					<!--						<Text text="Actions "/>-->
+					<!--					</Column>-->
+					<!--				</columns>-->
+					<!--				<items>-->
+					<!--					<ColumnListItem detailPress="onMemberItem">-->
+					<!--						<cells>-->
+					<!--							<Text text="{oModelSkill>skill/id}" visible="false"/>-->
+					<!--							<Text text="{oModelSkill>skill/name} "/>-->
+					<!--							<Text text="{oModelSkill>skill/description} "></Text>-->
+					<!--							<RatingIndicator maxValue="10" class="sapUiSmallMarginBottom" iconSize="14px" editable="false" value="{oModelSkill>proficiency}"-->
+					<!--								tooltip="{oModelSkill>proficiency} out of 10"/>-->
+												<!--<Text text="{= (! ${oModelTeam>} ) ? 'Present' : ${oModelTeam>memberTill} }"/>-->
+					<!--							<HBox alignItems="Inherit">-->
+					<!--								<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Skill" press="onEditskillDailog" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>-->
+													<!--<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+					<!--							</HBox>-->
+					<!--						</cells>-->
+					<!--					</ColumnListItem>-->
+					<!--				</items>-->
+					<!--			</Table>-->
+					<!--			<tnt:ToolHeader id="idToolbarList2" width="auto" design="Transparent" height="2rem">-->
+					<!--				<tnt:content>-->
+					<!--					<Button text="PREV" id="idPrev2" press="onPrev2"></Button>-->
+					<!--					<ToolbarSpacer/>-->
+					<!--					<Button text="1" id="idb9" type="Emphasized" press="onFirst2"></Button>-->
+					<!--					<Button text="2" id="idb10" press="onSecond2"></Button>-->
+					<!--					<Button text="3" id="idb11" press="onThird2"></Button>-->
+					<!--					<Button text="4" id="idb12" press="onFourth2"></Button>-->
+					<!--					<ToolbarSpacer/>-->
+					<!--					<Button id="idNext2" enabled="true" text="NEXT" press="onNext2"></Button>-->
+					<!--				</tnt:content>-->
+					<!--			</tnt:ToolHeader>-->
+					<!--		</VBox>-->
+					<!--	</content>-->
+					<!--</Panel>-->
+					<!--</l:HorizontalLayout>-->
+				</VBox>
+			</l:VerticalLayout>
+		</content>
+	</Page>
+</mvc:View>

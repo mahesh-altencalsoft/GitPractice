@@ -1,0 +1,76 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Company"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt" xmlns:t="sap.ui.table">
+	<Page id="idMasterPage"  >
+		<headerContent class="headerpagecss">
+			<!--<Button icon="sap-icon://bell" press="onNext"></Button>-->
+			<!--<Button icon="sap-icon://account" text="Admin" press="onNext"></Button>-->
+				<!--<Button icon="sap-icon://add" text="NEW" press="onCompanypress"></Button>-->
+					<Button id="idnew" tooltip="Create a Company" width="auto" press="onCompanypress" class="Newbtn" type="Emphasized"   text="NEW"/>
+		</headerContent>
+		<!--	<subHeader >-->
+		<!--	<Toolbar>-->
+		
+				<!--<SearchField width="80%" search="onSearch"   ></SearchField>-->
+		<!--<Button id="idnew" width="30%" press="onCompanypress" class="Newbtn" type="Emphasized"   text="NEW"/>-->
+			
+		<!--	</Toolbar>-->
+		<!--</subHeader>-->
+		<!--<tnt:ToolHeader height="1rem"></tnt:ToolHeader>-->
+			<tnt:ToolHeader height="1rem">
+
+		</tnt:ToolHeader>
+		<content>
+			<List id="idlist" 	includeItemInSelection="true" width="auto"  items="{ path: 'oModelCompanyList>/newData', sorter: { path: 'id' }  }"	>
+			<items>
+					<StandardListItem type="Navigation"  title="{oModelCompanyList>name}" press="onItem">
+						<customData>
+							<core:CustomData key="{oModelCompanyList>id}" value="{oModelCompanyList>name}"/>
+						</customData>
+					</StandardListItem>
+					</items>
+					<!--<infoToolbar >-->
+					<!--	<OverflowToolbar  active="false">-->
+					<!--		<Label text="List of the Companies"/>-->
+					<!--		<ToolbarSpacer />-->
+						<!--<Button icon="sap-icon://add" text="NEW" press="onCompanypress"></Button>-->
+							<!--<Button type="Emphasized" press="onCompanypress" icon="sap-icon://create"  text="New Company"/>-->
+					<!--	</OverflowToolbar>-->
+					<!--</infoToolbar>-->
+			
+			</List>
+		</content>
+			<footer>
+				
+			<!--<Toolbar id="idToolbarList" >-->
+			<!--	<content>-->
+			<!--		<Button icon="sap-icon://navigation-left-arrow" id="idPrev" press="onPrev"></Button>-->
+			<!--		<ToolbarSpacer/>-->
+					<!--<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>-->
+					<!--<Button text="2" id="idb2"  press="onSecond"></Button>-->
+					<!--<Button text="3" id="idb3"  press="onThird"></Button>-->
+					<!--<Button text="4" id="idb4"  press="onFourth"></Button>-->
+				
+			<!--		<ToolbarSpacer/>-->
+			<!--		<Button id="idNext" enabled="true" icon="sap-icon://navigation-right-arrow" press="onNext"></Button>-->
+			<!--	</content>-->
+			<!--</Toolbar>-->
+		</footer>
+		<tnt:ToolHeader id="idToolbarList" width="auto" design="Transparent" visible="false" height="2rem">
+				<tnt:content>
+					<Button text="PREV" id="idPrev" press="onPrev"></Button>
+					<ToolbarSpacer />
+				
+						<Button text="1" width="10%" id="idb1" type="Emphasized" press="onFirst"></Button>
+					<Button text="2" id="idb2"  width="10%"  press="onSecond"></Button>
+					<Button text="3" id="idb3"  width="10%"  press="onThird"></Button>
+					<Button text="4" id="idb4"  width="10%"  press="onFourth"></Button>
+							
+				
+				
+					<ToolbarSpacer />
+					<Button id="idNext" enabled="true" text="NEXT" press="onNext"></Button>
+				</tnt:content>
+			</tnt:ToolHeader>
+		
+	</Page>
+</mvc:View>

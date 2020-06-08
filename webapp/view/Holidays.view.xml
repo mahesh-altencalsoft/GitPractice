@@ -1,0 +1,66 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Holidays"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:tnt="sap.tnt" >
+	<Page title="{oModelHolidayList>/HolidyList/name} : {oModelHolidayList>/HolidyList/year}"  navButtonPress="onNavBack" showNavButton="false" >
+		<content>
+			<VBox alignContent="Center" class="sapUiResponsiveMargin ">
+				<Table id="idHolidayTab" width="50%" inset="false" alternateRowColors="true" class="Emplist tablecss" selectionChange="onclickHoliday"
+					itemPress="onHolidaylistItem" items="{ path: 'oModelHoliday>/HolidayData', sorter: { path: 'id' } }">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title id="idEmp" text="Holidays" level="H2"/>
+								<ToolbarSpacer/>
+								<Button text="New Holiday" icon="sap-icon://projector" tooltip="Create a Holiday " type="Negative" press="onNewHoliday"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<!--<infoToolbar>-->
+					<!--	<OverflowToolbar>-->
+					<!--		<Label text="Holidays"  />-->
+					<!--	</OverflowToolbar>-->
+					<!--</infoToolbar>-->
+					<columns>
+						<Column width="auto" hAlign="Center" visible="false">
+							<Text text="id"/>
+						</Column>
+						<Column width="auto" hAlign="Center">
+							<Text text="Name"/>
+						</Column>
+						<Column hAlign="Center" width="auto">
+							<Text text="Date "/>
+						</Column>
+						<Column hAlign="Begin" width="auto">
+							<Text text="Actions "/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem detailPress="ondetail">
+							<cells>
+								<Text text="{oModelHoliday>id}"/>
+								<Text text="{oModelHoliday>name}"/>
+								<Text
+									text="{ path: 'oModelHoliday>date', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"/>
+								<HBox alignItems="Inherit">
+									<core:Icon src="sap-icon://edit" useIconTooltip="false"  tooltip="Edit Holiday" alt="" press="onEditHolidayDailog" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+									<!--<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			<tnt:ToolHeader id="idToolbarList" width="50%" visible="false" design="Transparent" height="2rem">
+									<tnt:content>
+										<Button text="PREV" id="idPrev" press="onPrev"></Button>
+										<ToolbarSpacer/>
+										<Button text="1" id="idb1" type="Emphasized" press="onFirst"></Button>
+										<Button text="2" id="idb2" press="onSecond"></Button>
+										<Button text="3" id="idb3" press="onThird"></Button>
+										<Button text="4" id="idb4" press="onFourth"></Button>
+										<ToolbarSpacer/>
+										<Button id="idNext" enabled="true" text="NEXT" press="onNext"></Button>
+									</tnt:content>
+								</tnt:ToolHeader>			
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

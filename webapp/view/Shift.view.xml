@@ -1,0 +1,246 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ibm.fin.ar.controller.Shift"
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:fc="sap.f" xmlns:tnt="sap.tnt">
+	<Page title="" navButtonPress="onNavBack" showNavButton="false">
+		<content>
+			<l:VerticalLayout>
+				<l:HorizontalLayout>
+					<Panel width="auto" expandable="false" expanded="true" expand="onexpandemployee" expandAnimation="true" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="{oModelGBShift>/ShiftData/name}"/>
+								<ToolbarSpacer/>
+								<Button id="ideditshiftdet" icon="sap-icon://user-edit" tooltip="Edit the Shift" class="btneditdelete" type="Emphasized" press="onShiftDetedit"/>
+								<!--<Button icon="sap-icon://delete" tooltip="Delete the Employee" class="btneditdelete" type="Reject" press="onDeleteEmpConfirm"/>-->
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<fc:Card class="" width="auto">
+								<!--<f:header>-->
+								<!--	<card:Header-->
+								<!--		title="Buy bus ticket on-line"-->
+								<!--		subtitle="Buy a single drive ticket for a date"-->
+								<!--		iconSrc="sap-icon://bus-public-transport"/>-->
+								<!--</f:header>-->
+								<fc:content>
+									<l:VerticalLayout class="sapUiSmallMargin">
+										<l:HorizontalLayout >
+											<Label width="100px" text="Start Time :" design="Bold" class="sapUiTinyMarginBottom"/>
+											<Text width="100px" text="{ path: 'oModelGBShift>/ShiftData/starts', formatter: '.formatter.formatTime'}"
+												class="formattext sapUiTinyMarginBottom "></Text>
+											<Label width="100px" text="Valid From :" design="Bold" class="sapUiTinyMarginBottom"/>
+											<Text width="100px"
+												text="{path:'oModelGBShift>/ShiftData/validFrom', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }}"
+												class="formattext sapUiTinyMarginBottom "></Text>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout >
+											<Label width="100px" text="End Time :" design="Bold"/>
+											<Text width="100px" text="{ path: 'oModelGBShift>/ShiftData/duration', formatter: '.formatter.formatTime'} "
+												class="formattext sapUiTinyMarginBottom"></Text>
+											<Label width="100px" text=" Valid To:" class="sapUiTinyMarginBottom" design="Bold"/>
+											<Text width="100px"
+												text="{= (! ${ path: 'oModelGBShift>/ShiftData/validTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} ) ? '31-Dec-9999' : ${ path: 'oModelGBShift>/ShiftData/validTill', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', source: { pattern: 'yyyy/MM/dd' } }} }"
+												class="formattext "></Text>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout >
+											<Label text="Valid On" class="sapUiTinyMarginTopBottom" design="Bold"/>
+										</l:HorizontalLayout >
+										<l:HorizontalLayout>
+											<Table id="dzdszdzvs" width="350px" inset="false" selectionChange="onclickSkill" itemPress="onclickSkill">
+												<columns>
+													<Column width="auto" visible="true" hAlign="Center">
+														<!--<Text text="Days"/>-->
+													</Column>
+													<Column width="auto" hAlign="Center">
+														<!--<Text text=""/>-->
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Monday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onMonday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onMonday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Tuesday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onTuesday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onTuesday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Wedensday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onWednesday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onWednesday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Thursday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onThursday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onThursday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Friday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onWednesday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onFriday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Saturday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onSaturday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onSaturday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+													<ColumnListItem detailPress="ondetail">
+														<cells>
+															<Text text="Sunday"/>
+															<core:Icon src="{path:'oModelGBShift>/ShiftData/onSunday', formatter: '.formatter.formatIcon' }" useIconTooltip="false"
+																class="sapUiTinyMarginBegin" color="{path:'oModelGBShift>/ShiftData/onSunday', formatter: '.formatter.formatIconColor' }"></core:Icon>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</l:HorizontalLayout>
+									<!--								<l:HorizontalLayout>-->
+										<!--	<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="1" displayOnly= "false" />		-->
+										<!--<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="2" displayOnly= "false" />-->
+										<!--		<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="3" displayOnly= "false" />-->
+										<!--				<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="4" displayOnly= "false" />-->
+										<!--						<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="7" displayOnly= "false" />-->
+										<!--								<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="8" displayOnly= "false" />-->
+										<!--										<tnt:InfoLabel text="SUN" class="sapUiTinyMarginBeginEnd" renderMode="Loose" colorScheme="9" displayOnly= "false" />-->
+									
+									<!--<core:Icon src="sap-icon://action-settings" useIconTooltip="false" class="sapUiMediumMarginTop sapUiTinyMarginBottom" color="0000FF"></core:Icon>		-->
+									<!--	<Label text="Display Settings" class=" formattext sapUiMediumMarginTopBottom" design="Bold" ></Label>-->
+									<!--	</l:HorizontalLayout >-->
+										<!--<l:HorizontalLayout >-->
+										<!--	<Label width="auto" text=" Background Color :" design="Bold" class="sapUiTinyMarginBottom"/>-->
+											<!--<Text width="100px" text="" class="formattext sapUiTinyMarginBottom "></Text>-->
+										<!--	<core:Icon src="sap-icon://color-fill" useIconTooltip="false" class="sapUiTinyMarginBeginEnd" color="#{oModelGBShift>/ShiftData/bgColor}"></core:Icon>-->
+										<!--	<Label width="auto" text="Text Color:" design="Bold" class="sapUiTinyMarginBottom"/>-->
+											<!--<Text width="100px" text="" class="formattext sapUiTinyMarginBottom "></Text>-->
+										<!--	<core:Icon src="sap-icon://color-fill" useIconTooltip="false" class="sapUiTinyMarginBeginEnd" color="#{oModelGBShift>/ShiftData/textColor}"></core:Icon>-->
+										<!--</l:HorizontalLayout>-->
+									</l:VerticalLayout>
+								</fc:content>
+							</fc:Card>
+						</content>
+					</Panel>
+					<Panel width="auto" expandable="false" expanded="true" expand="onexpandemployee" expandAnimation="true" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="Shift Group"/>
+								<ToolbarSpacer/>
+								<Button id="ideditskill" icon="sap-icon://user-edit" tooltip="Edit the Shift" class="btneditdelete" type="Emphasized" press="onAddSkillDailog"/>
+								<!--<Button icon="sap-icon://delete" tooltip="Delete the Employee" class="btneditdelete" type="Reject" press="onDeleteEmpConfirm"/>-->
+							</OverflowToolbar>
+						</headerToolbar>
+						<content>
+							<fc:Card class="" width="auto">
+								<fc:content>
+									<Table id="idShiftGrpTab" width="250px" inset="false" selectionChange="onclickSkill" itemPress="onclickSkill"
+										items="{ path: 'oModelGBShift>/ShiftData/shiftGroups', sorter: { path: 'id' } }">
+										<columns>
+											<Column width="auto" visible="true" hAlign="Center"></Column>
+										</columns>
+										<items>
+											<ColumnListItem detailPress="ondetail">
+												<cells>
+													<Text text="{oModelGBShift>name}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</fc:content>
+							</fc:Card>
+						</content>
+					</Panel>
+				</l:HorizontalLayout>
+				<Panel width="auto" expandable="false" expanded="false" expand="onexpandSkill" class="sapUiResponsiveMargin">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="Skills" width="240px"/>
+								<ToolbarSpacer/>
+								<!--<Button id="idedithistory" visible="false" tooltip="Edit Team History'" icon="sap-icon://user-edit" class="btneditdelete" type="Emphasized"-->
+								<!--press="onEditHistoryDailog"/>-->
+								<Button visible="true" tooltip="Add Skill " id="idaddskill" icon="sap-icon://add" class="btneditdelete" type="Emphasized"
+									press="onAddSkillDialog"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<content>
+						<VBox>
+							<Table id="idSkillTab" width="auto" inset="false" class="Emplist tablecss" selectionChange="onclickTeamMem" itemPress="onclickTeamMem"
+								items="{ path: 'oModelSkillList>/SkillData', sorter: { path: 'id' } }">
+								<!--<headerToolbar>-->
+								<!--	<OverflowToolbar>-->
+								<!--		<content>-->
+								<!--			<Title id="idTeam" text="Team Member List" level="H1"/>-->
+								<!--			<ToolbarSpacer/>-->
+								<!--			<Button text="Add New Member" icon="sap-icon://add" tooltip="Add a Team Member" type="Emphasized" press="onAddTeamMember"/>-->
+								<!--		</content>-->
+								<!--	</OverflowToolbar>-->
+								<!--</headerToolbar>-->
+								<columns>
+									<Column width="auto" visible="false" hAlign="Center">
+										<Text text="id"/>
+									</Column>
+									<Column width="auto" hAlign="Center">
+										<Text text="Name"/>
+									</Column>
+									<Column width="auto" hAlign="Center">
+										<Text text="Description"/>
+									</Column>
+									<Column hAlign="Center" width="auto">
+										<Text text="Proficiency"/>
+									</Column>
+									<!--<Column hAlign="Center" width="auto">-->
+									<!--	<Text text="Member Till "/>-->
+									<!--</Column>-->
+									<Column hAlign="Begin" width="auto">
+										<Text text="Actions "/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem detailPress="onMemberItem">
+										<cells>
+											<Text text="{oModelSkillList>skill/id}" visible="false"/>
+											<Text text="{oModelSkillList>skill/name} "/>
+											<Text text="{oModelSkillList>skill/description} "></Text>
+											<RatingIndicator maxValue="10" class="sapUiSmallMarginBottom" iconSize="14px" editable="false" value="{oModelSkillList>proficiency}"
+												tooltip="{oModelSkillList>proficiency} out of 10"/>
+											<!--<Text text="{= (! ${oModelTeam>} ) ? 'Present' : ${oModelTeam>memberTill} }"/>-->
+											<HBox alignItems="Inherit">
+												<core:Icon src="sap-icon://edit" useIconTooltip="false" press="onEditskillDailog" class="sapUiTinyMarginBegin" color="#fec500"></core:Icon>
+												<!--<core:Icon src="sap-icon://delete" press="ondeletememberdialog" color="#dd8686" class="sapUiSmallMarginBeginEnd"></core:Icon>-->
+											</HBox>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<tnt:ToolHeader id="idToolbarList2" visible="false" width="auto" design="Transparent" height="2rem">
+								<tnt:content>
+									<Button text="PREV" id="idPrev2" press="onPrev2"></Button>
+									<ToolbarSpacer/>
+									<Button text="1" id="idb9" type="Emphasized" press="onFirst2"></Button>
+									<Button text="2" id="idb10" press="onSecond2"></Button>
+									<Button text="3" id="idb11" press="onThird2"></Button>
+									<Button text="4" id="idb12" press="onFourth2"></Button>
+									<ToolbarSpacer/>
+									<Button id="idNext2" enabled="true" text="NEXT" press="onNext2"></Button>
+								</tnt:content>
+							</tnt:ToolHeader>
+						</VBox>
+					</content>
+				</Panel>
+			</l:VerticalLayout>
+		</content>
+	</Page>
+</mvc:View>

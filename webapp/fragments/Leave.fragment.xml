@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" 
+	xmlns:f="sap.f"
+		xmlns:card="sap.f.cards" >
+
+	<Dialog title="Leave Form" id="idLeaveDailog" showHeader="true" contentHeight="auto" contentWidth="auto" xmlns:l="sap.ui.layout"
+		draggable="true" icon="sap-icon://employee">
+		<f:Card
+			class="sapUiMediumMargin"
+			width="auto">
+			<!--<f:header>-->
+			<!--	<card:Header-->
+			<!--title=""  />-->
+			<!--</f:header>-->
+			<f:content>
+				<VBox
+					height="auto"
+					class="sapUiTinyMargin"
+					justifyContent="SpaceBetween">
+					<!--<HBox alignItems="Center" id="idhbox">-->
+							<!--<Label text="Name"  design="Bold" />-->
+		<!--<Text text="" id="idmemberName" class="formattext sapUiTinyMarginBottom" ></Text>-->
+	
+					<!--</HBox>-->
+						<HBox  alignItems="Center">
+				 <Label  text="Reason" id="idlablreason" required="true" width="150px" design="Bold" ></Label>
+		
+					<TextArea  placeholder="Enter Text" id="idReason" required="true" growing="true" growingMaxLines="7" width="250px"/>	
+						</HBox>	
+					<HBox justifyContent="SpaceAround" alignItems="Center">
+			        <Label  text=" From" width="150px" required="true" design="Bold" ></Label>
+					<DatePicker required="true" id="idmemberfrom" valueFormat='yyyy-MM-dd' width="250px"   placeholder="Enter Date"/>
+					</HBox>
+					<HBox justifyContent="SpaceAround" alignItems="Center">
+					    <Label  text="To" width="150px" required="true" design="Bold" ></Label>
+						<DatePicker required="true" id="idmemberTo" valueFormat='yyyy-MM-dd' width="250px" placeholder="Enter  Date"/>
+	
+					</HBox>
+		<Label  text="" id="idError1" visible="false" class=" errortext sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>	
+				</VBox>
+			</f:content>
+		</f:Card>
+		<buttons >
+				<Button id="idAdd" text="ADD" press=".onLeaveAdd" type="Emphasized" width="30%" />
+			<Button id="idupdate" text="UPDATE" press=".onLeaveUpdate" type="Success" width="30%"/>
+			<Button text="CANCEL" press=".onLeaveCancel" type="Reject" width="30%"/>
+		
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
